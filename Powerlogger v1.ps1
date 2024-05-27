@@ -1,14 +1,47 @@
+# Verificar si se están ejecutando con privilegios de administrador
+$currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
+$principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
+$isAdmin = $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+
+if (-not $isAdmin) {
+    # Reiniciar el script como administrador
+    Start-Process powershell.exe "-File `"$PSCommandPath`"" -Verb RunAs
+    exit
+}
+
+# Cambiar el estilo de fuente y color de fondo de la ventana de PowerShell
+function Set-ConsoleStyle {
+    $host.UI.RawUI.BackgroundColor = "Black"  # Cambia el color de fondo a negro
+    $host.UI.RawUI.ForegroundColor = "Green" # Cambia el color de texto a verde
+    $host.UI.RawUI.WindowTitle = "Mi ventana de PowerShell"  # Establece el título de la ventana
+
+    $font = $host.UI.RawUI.Font
+    $fontFamily = "Consolas"  # Cambia la familia de la fuente
+    $fontSize = 16            # Cambia el tamaño de la fuente
+    $fontStyle = "Regular"    # Cambia el estilo de la fuente
+
+    $font = New-Object System.Drawing.Font($fontFamily, $fontSize, $fontStyle)
+    $host.UI.RawUI.Font = $font
+}
+
+# Llama a la función para establecer el estilo de la consola
+Set-ConsoleStyle
+
+
+# Cambiar el tamaño de la ventana de PowerShell
+mode con: cols=55 lines=15
+
 # Funcion para mostrar el menu y obtener la opcion del usuario
 function Show-Menu {
     Clear-Host
     Write-Host "Selecciona una opcion:"
-    Write-Host "1 - Encendido (ID 1 y 6005)"
+    Write-Host "`n1 - Encendido (ID 1 y 6005)"
     Write-Host "2 - Reinicio (ID 41 y 1074)"
     Write-Host "3 - Apagado (ID 42, 6006 y 6008)"
     Write-Host "4 - Todo (ID 1, 41, 42, 1074, 6005, 6006, 6008)"
     Write-Host "5 - Abrir archivo de eventos guardado"
     Write-Host "6 - Salir"
-    $option = Read-Host "Introduce el numero de tu opcion"
+    $option = Read-Host "`nIntroduce el numero de tu opcion"
     return $option
 }
 
