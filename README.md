@@ -2,8 +2,10 @@ PowerLogger y PowerLogon
 
 Descripción:
 
-PowerLogger y PowerLogon son scripts de PowerShell diseñados para ayudarte a monitorear y registrar eventos del sistema en tu computadora. 
+PowerLogger y PowerLogon son scripts escritos en powershell diseñados para ayudarte a monitorear y registrar eventos del sistema en tu computadora. 
 Estos scripts aprovechan las capacidades del Visor de eventos de Windows para proporcionarte información sobre eventos importantes como encendido, reinicio, apagado, inicios de sesión exitosos y fallidos, entre otros.
+
+El script es un archivo .bat para evitar las medidas de seguridad predeterminadas de powershell en Windows.
 
 Características:
 
@@ -14,9 +16,8 @@ PowerLogon: Una versión ampliada del script que incluye opciones adicionales pa
 Cómo usar:
 
     Clona o descarga el repositorio en tu máquina local.
-    Abre PowerShell.
-    Navega al directorio donde se encuentra el script.
-    Ejecuta el script deseado utilizando PowerShell.
+    Click derecho en el archivo
+    Ejecuta el script bat como administrador
     Sigue las instrucciones en pantalla para seleccionar las opciones de monitoreo de eventos.
 
 Requisitos:
