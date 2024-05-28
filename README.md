@@ -24,3 +24,7 @@ Requisitos:
 
     Windows con PowerShell instalado.
     Permisos de administrador para ejecutar el script (especialmente para PowerLogon, que monitorea eventos de seguridad).
+
+Anotaciones:
+
+- Si estas en un ambiente donde las computadoras a auditar pertenecen a un dominio especifico, no vas a poder utilizar las opciones de "Errores en inicios de sesion" o "Cierres sesion" ya que esas se registran directamente al controlador de dominio. (Estos eventos deben ser habilitados para ser registrador por el domain controller mediante una GPO local, ver: https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/basic-audit-logon-events)
